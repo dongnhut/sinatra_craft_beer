@@ -2,6 +2,7 @@ class CategoriesController < Sinatra::Base
 
   get '/' do
     @categories = Category.all
+    { data: @categories }.to_json
   end
 
   post '/' do
