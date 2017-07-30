@@ -11,7 +11,6 @@ class CategoriesController < Sinatra::Base
       category = Category.new({ name: "#{ params['name'] }" })
       category.save!
       #successfully
-      "<h1> created </h1>"
     rescue
       'errors'
       # errors
