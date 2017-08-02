@@ -1,7 +1,8 @@
-class CategoriesController < Sinatra::Base
+class CategoriesController < ApiController
 
   get '/' do
     @categories = Category.all
+    { data: @categories }.to_json
   end
 
   post '/' do
@@ -10,11 +11,9 @@ class CategoriesController < Sinatra::Base
     begin
       category = Category.new({ name: "#{ params['name'] }" })
       category.save!
-      #successfully
-      "<h1> created </h1>"
+      { data: category }.to_json
     rescue
-      'errors'
-      # errors
+      { errors: 'create_failed' }.to_json
     end
   end
 

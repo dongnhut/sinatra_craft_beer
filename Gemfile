@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 gem 'sinatra'
 gem 'sinatra-contrib'
+gem 'sinatra-reloader'
+gem 'rerun' #rerun 'puma'
 gem 'puma'
 gem 'require_all'
 gem 'rake'
