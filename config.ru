@@ -2,10 +2,9 @@
 require 'rubygems'
 require 'bundler/setup'
 
-#sinatra
+# sinatra
 require 'sinatra/base'
 require 'sinatra/activerecord'
-
 
 require 'require_all'
 require_all './app'
