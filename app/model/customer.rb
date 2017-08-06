@@ -1,5 +1,6 @@
 require 'sinatra/activerecord'
-class Category < ActiveRecord::Base
+
+class Customer < ActiveRecord::Base
 
   has_many :beers
 
