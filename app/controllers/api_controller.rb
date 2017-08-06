@@ -7,6 +7,7 @@ class ApiController < Sinatra::Base
   private
 
   def response_header
-    headers 'Content-Type' => 'application/json'
+    # headers 'Content-Type' => 'application/json'
+    content_type :json
   end
 end
