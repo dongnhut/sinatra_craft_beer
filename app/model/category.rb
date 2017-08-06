@@ -1,4 +1,7 @@
-require 'sinatra/activerecord'
-class Category < ActiveRecord::Base
+class Category < ApplicationRecord
+  # self.table_name = 'categories'
 
+  def code
+    'Ok'
+  end
 end
