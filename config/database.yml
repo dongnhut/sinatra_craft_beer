@@ -3,5 +3,5 @@ development:
   encoding: unicode
   database: craft_beer_development
   # pool: 2
-  # username: your_username
-  # password: your_password
+  username: postgres
+  password: 

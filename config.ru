@@ -12,3 +12,4 @@ require_all './app'
 
 # require "app/controllers/categories_controller.rb"
 map('/categories') { run CategoriesController }
+map('/admin/categories') { run Admin::CategoriesController }
