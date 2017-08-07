@@ -1,6 +1,4 @@
-require 'sinatra/activerecord'
-
-class Beer < ActiveRecord::Base
+class Beer < ApplicationRecord
 
   belongs_to :category
   has_many :customers
