@@ -1,4 +1,5 @@
-require 'sinatra/activerecord'
-class Category < ActiveRecord::Base
+class Category < ApplicationRecord
+
+  has_many :beers
 
 end

@@ -1,0 +1,58 @@
+<div class="panel panel-default">
+  <div class="panel-heading">List category</div>
+  <div class="panel-body">
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Created at</th>
+        <th>Action</th>
+      </tr>
+      <% categories.each do |category| %>
+      <tr>
+        <td> <%= category.id %> </td>
+        <td> <%= category.name %> </td>
+        <td> <%= category.created_at %> </td>
+        <td>
+          <a href="/admin/categories/<%= category.id %>/edit" class="btn btn-primary">
+            <i class="glyphicon glyphicon-pencil"></i>
+          </a>
+          <form action="/admin/categories/<%= category.id %>/delete" method="post" class="form-delete">
+            <input type="hidden" name="_method" value="DELETE">
+            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you ready?')">
+              <i class="glyphicon glyphicon-trash"></i>
+            </button>
+          </form>
+        </td>
+      </tr>
+      <%end%>
+    </table>
+  </div>
+  <div class="panel-footer">
+    <nav aria-label="Page navigation">
+      <ul class="pagination">
+        <% if (meta[:page] > 1) && (meta[:total_page] > 1) %>
+        <li>
+          <a href="/admin/categories?per=<%= meta[:per] %>&page=<%= meta[:page] - 1 %>" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <% end %>
+
+        <% (1..meta[:total_page]).step(1) do |x| %>
+        <li class="<%= x == meta[:page] ? 'active' : 'normal' %>">
+          <a href="/admin/categories?per=<%= meta[:per] %>&page=<%= x %>"><%= x %></a>
+        </li>
+        <% end %>
+
+        <% if (meta[:page] < meta[:total_page]) && (meta[:total_page] > 1) %>
+        <li>
+          <a href="/admin/categories?per=<%= meta[:per] %>&page=<%= meta[:page] + 1 %>" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+</div>
