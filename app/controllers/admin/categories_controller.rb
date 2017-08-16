@@ -1,17 +1,10 @@
 module Admin
-  class CategoriesController < ApplicationController
-    DEFAULT_PER_PAGE = 5
-    FIRST_PAGE = 1
-
-    before do
-      category_params
-    end
-
+  class CategoriesController < AdminController
     get '/' do
       # require 'pry'
       # binding.pry
       # Get total record / limit record => total page
-      total = total_page(Category.count(:id), params['per'].to_i)
+      total = total_page(Category.count(:id), params['per'].to_f)
 
       # check page current <1 or > total page
       if params['page'].to_i < 1
@@ -20,7 +13,7 @@ module Admin
         params['page'] = total
       end
 
-      categories = Category.limit(params['per']).offset((params['page'].to_i - 1) * params['per'].to_i)
+      categories = Category.limit(params['per']).offset((params['page'].to_i - 1) * params['per'].to_i).order('id DESC')
       meta = {
         page: params['page'].to_i,
         per: params['per'].to_i,
@@ -31,32 +24,57 @@ module Admin
           :layout => :admin_layout
     end
 
-    post '/' do
+    get '/create' do
+      erb :'categories/create',
+          :layout => :admin_layout
+    end
+
+    post '/create' do
       # require 'pry'
       # binding.pry
       begin
-        category = Category.new(name: params['name'].to_s)
+        category = Category.new({
+          name: "#{ params['name'] }",
+          description: "#{ params['description'] }"
+        })
         category.save!
-        # successfully
-        '<h1> created </h1>'
+        redirect '/admin/categories'
       rescue
         'errors'
         # errors
       end
     end
 
-    private
+    get '/:id/edit' do
+      category = Category.find(params['id'])
 
-    def total_page total_record = 1, per_page = 1
-      total_page = (total_record / per_page).ceil
-
-      total_page
-      # total_page.next unless (total_record % per_page).zero?
+      erb :'categories/edit',
+          :locals => { :category => category },
+          :layout => :admin_layout
     end
 
-    def category_params
-      params['page'] ||= FIRST_PAGE
-      params['per'] ||= DEFAULT_PER_PAGE
+    put '/:id/edit' do
+      beer = Category.find(params['id'])
+      data = {
+        name: params['name'],
+        description: params['description'],
+      }
+      begin
+        beer.update(data)
+        redirect '/admin/categories'
+      rescue Exception => e
+        e.message
+      end
+    end
+
+    delete '/:id/delete' do
+      begin
+        category = Category.find(params['id'])
+        category.destroy!
+        redirect '/admin/categories'
+      rescue Exception => e
+        e.message
+      end
     end
   end
 end

@@ -10,13 +10,52 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170726132522) do
+ActiveRecord::Schema.define(version: 20170813081244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "admin", force: :cascade do |t|
+    t.string "name"
+    t.string "username", null: false
+    t.string "email", null: false
+    t.string "password", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "beers", force: :cascade do |t|
+    t.bigint "category_id"
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "manufacturer"
+    t.string "country"
+    t.decimal "price"
+    t.integer "show"
+    t.index ["category_id"], name: "index_beers_on_category_id"
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "description"
+  end
+
+  create_table "customer_beers", force: :cascade do |t|
+    t.bigint "beer_id"
+    t.bigint "customer_id"
+    t.index ["beer_id"], name: "index_customer_beers_on_beer_id"
+    t.index ["customer_id"], name: "index_customer_beers_on_customer_id"
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string "name"
+    t.string "username", null: false
+    t.string "email", null: false
+    t.string "password", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

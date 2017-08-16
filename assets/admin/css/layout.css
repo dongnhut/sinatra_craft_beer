@@ -1,0 +1,15 @@
+.pagination {
+  width: 100%;
+  text-align: right;
+}
+.pagination>li>a, .pagination>li>span {
+  float: none;
+}
+.form-delete {
+  display: initial;
+}
+
+span.number {
+  font-weight: bold;
+  font-size: 5.2em;
+}
