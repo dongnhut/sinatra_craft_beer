@@ -1,5 +1,6 @@
 require 'faker'
 
+# Faker create beer
 task :beer do
   10.times { |i|
     Beer.create(

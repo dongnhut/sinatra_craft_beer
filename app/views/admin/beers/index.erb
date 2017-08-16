@@ -48,7 +48,7 @@
           <a href="/admin/beers?per=<%= meta[:per] %>&page=<%= x %>"><%= x %></a>
         </li>
         <% end %>
-
+        
         <% if (meta[:page] < meta[:total_page]) && (meta[:total_page] > 1) %>
         <li>
           <a href="/admin/beers?per=<%= meta[:per] %>&page=<%= meta[:page] + 1 %>" aria-label="Next">

@@ -1,5 +1,5 @@
 module Admin
-  class CategoriesController < AdminController
+  class CategoriesController < AdminController #change extend from AdminController
     get '/' do
       # require 'pry'
       # binding.pry

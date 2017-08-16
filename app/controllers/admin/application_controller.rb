@@ -2,6 +2,7 @@ class ApplicationController < Sinatra::Base
   register Sinatra::Flash
 
   set :views, Proc.new { File.expand_path('../../views/admin', File.dirname(__FILE__))}
+  # use resful method Get, post, put, patch, delete
   set :method_override, true
   enable :sessions
 

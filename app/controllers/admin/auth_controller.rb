@@ -1,5 +1,6 @@
 module Admin
   class AuthController < ApplicationController
+    # check after is login?
     after do
       if is_login?
         redirect '/admin'

@@ -1,5 +1,5 @@
 require 'bcrypt'
-
+# task create admin
 task :cadmin do
   admin = Admin.new(
     :name => 'Superadmin',

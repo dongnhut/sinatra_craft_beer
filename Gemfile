@@ -9,5 +9,7 @@ gem 'activerecord'
 gem 'sinatra-activerecord'
 gem 'pry'
 gem 'faker'
+# gem bcrypt hash password
 gem 'bcrypt'
+# gem flash push message
 gem 'sinatra-flash'

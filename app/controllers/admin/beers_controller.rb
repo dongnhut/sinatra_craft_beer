@@ -1,6 +1,5 @@
 module Admin
-  class BeersController < AdminController
-
+  class BeersController < AdminController #change extend from AdminController
     get '/' do
       total = total_page(Beer.count(:id), params['per'].to_f)
 

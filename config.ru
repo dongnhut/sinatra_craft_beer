@@ -8,7 +8,6 @@ require 'sinatra/activerecord'
 require 'sinatra/flash'
 require 'bcrypt'
 
-
 require 'require_all'
 require_all './app'
 
